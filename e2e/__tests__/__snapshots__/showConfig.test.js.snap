@@ -45,6 +45,7 @@ exports[`--showConfig outputs config info and exits 1`] = `
       "resetModules": false,
       "resolver": null,
       "restoreMocks": false,
+      "restoreSpies": false,
       "rootDir": "<<REPLACED_ROOT_DIR>>",
       "roots": [
         "<<REPLACED_ROOT_DIR>>"

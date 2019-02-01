@@ -26,7 +26,7 @@ describe('without an explicit restore', () => {
 
 describe('with an explicit restore', () => {
   beforeEach(() => {
-    jest.restoreAllMocks();
+    jest.restoreAllSpies();
   });
 
   test('first test', () => {

@@ -1044,7 +1044,7 @@ describe('moduleMocker', () => {
       }).toThrow();
     });
 
-    it('supports restoring all spies', () => {
+    it('supports restoring all spies with restoreAllMocks', () => {
       let methodOneCalls = 0;
       let methodTwoCalls = 0;
       const obj = {
@@ -1069,6 +1069,42 @@ describe('moduleMocker', () => {
       expect(spy2.mock.calls.length).toBe(1);
 
       moduleMocker.restoreAllMocks();
+
+      // Then, after resetting all mocks, we call methods again. Only the real
+      // methods should bump their count, not the spies.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(2);
+      expect(methodTwoCalls).toBe(2);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+    });
+
+    it('supports restoring all spies with restoreAllSpies', () => {
+      let methodOneCalls = 0;
+      let methodTwoCalls = 0;
+      const obj = {
+        methodOne() {
+          methodOneCalls++;
+        },
+        methodTwo() {
+          methodTwoCalls++;
+        },
+      };
+
+      const spy1 = moduleMocker.spyOn(obj, 'methodOne');
+      const spy2 = moduleMocker.spyOn(obj, 'methodTwo');
+
+      // First, we call with the spies: both spies and both original functions
+      // should be called.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(1);
+      expect(methodTwoCalls).toBe(1);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+
+      moduleMocker.restoreAllSpies();
 
       // Then, after resetting all mocks, we call methods again. Only the real
       // methods should bump their count, not the spies.
@@ -1156,7 +1192,7 @@ describe('moduleMocker', () => {
       }).toThrow();
     });
 
-    it('supports restoring all spies', () => {
+    it('supports restoring all spies with restoreAllMocks', () => {
       let methodOneCalls = 0;
       let methodTwoCalls = 0;
       const obj = {
@@ -1185,6 +1221,46 @@ describe('moduleMocker', () => {
       expect(spy2.mock.calls.length).toBe(1);
 
       moduleMocker.restoreAllMocks();
+
+      // Then, after resetting all mocks, we call methods again. Only the real
+      // methods should bump their count, not the spies.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(2);
+      expect(methodTwoCalls).toBe(2);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+    });
+
+    it('supports restoring all spies with restoreAllSpies', () => {
+      let methodOneCalls = 0;
+      let methodTwoCalls = 0;
+      const obj = {
+        get methodOne() {
+          return function() {
+            methodOneCalls++;
+          };
+        },
+        get methodTwo() {
+          return function() {
+            methodTwoCalls++;
+          };
+        },
+      };
+
+      const spy1 = moduleMocker.spyOn(obj, 'methodOne', 'get');
+      const spy2 = moduleMocker.spyOn(obj, 'methodTwo', 'get');
+
+      // First, we call with the spies: both spies and both original functions
+      // should be called.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(1);
+      expect(methodTwoCalls).toBe(1);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+
+      moduleMocker.restoreAllSpies();
 
       // Then, after resetting all mocks, we call methods again. Only the real
       // methods should bump their count, not the spies.
@@ -1260,7 +1336,7 @@ describe('moduleMocker', () => {
       expect(obj.property).toBe(true);
     });
 
-    it('supports restoring all spies on the prototype chain', () => {
+    it('supports restoring all spies on the prototype chain with restoreAllMocks', () => {
       let methodOneCalls = 0;
       let methodTwoCalls = 0;
       const prototype = {
@@ -1290,6 +1366,47 @@ describe('moduleMocker', () => {
       expect(spy2.mock.calls.length).toBe(1);
 
       moduleMocker.restoreAllMocks();
+
+      // Then, after resetting all mocks, we call methods again. Only the real
+      // methods should bump their count, not the spies.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(2);
+      expect(methodTwoCalls).toBe(2);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+    });
+
+    it('supports restoring all spies on the prototype chain with restoreAllSpies', () => {
+      let methodOneCalls = 0;
+      let methodTwoCalls = 0;
+      const prototype = {
+        get methodOne() {
+          return function() {
+            methodOneCalls++;
+          };
+        },
+        get methodTwo() {
+          return function() {
+            methodTwoCalls++;
+          };
+        },
+      };
+      const obj = Object.create(prototype, {});
+
+      const spy1 = moduleMocker.spyOn(obj, 'methodOne', 'get');
+      const spy2 = moduleMocker.spyOn(obj, 'methodTwo', 'get');
+
+      // First, we call with the spies: both spies and both original functions
+      // should be called.
+      obj.methodOne();
+      obj.methodTwo();
+      expect(methodOneCalls).toBe(1);
+      expect(methodTwoCalls).toBe(1);
+      expect(spy1.mock.calls.length).toBe(1);
+      expect(spy2.mock.calls.length).toBe(1);
+
+      moduleMocker.restoreAllSpies();
 
       // Then, after resetting all mocks, we call methods again. Only the real
       // methods should bump their count, not the spies.

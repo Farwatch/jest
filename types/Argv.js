@@ -68,6 +68,7 @@ export type Argv = {|
   resetModules: boolean,
   resolver: ?string,
   restoreMocks: boolean,
+  restoreSpies: boolean,
   rootDir: string,
   roots: Array<string>,
   runInBand: boolean,

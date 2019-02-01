@@ -193,6 +193,7 @@ const groupOptions = (
     resetModules: options.resetModules,
     resolver: options.resolver,
     restoreMocks: options.restoreMocks,
+    restoreSpies: options.restoreSpies,
     rootDir: options.rootDir,
     roots: options.roots,
     runner: options.runner,

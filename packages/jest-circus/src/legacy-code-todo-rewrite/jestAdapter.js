@@ -68,8 +68,8 @@ const jestAdapter = async (
       }
     }
 
-    if (config.restoreMocks) {
-      runtime.restoreAllMocks();
+    if (config.restoreMocks || config.restoreSpies) {
+      runtime.restoreAllSpies();
     }
   });
 

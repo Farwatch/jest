@@ -402,9 +402,15 @@ Resets the state of all mocks. Equivalent to calling [`.mockReset()`](MockFuncti
 
 Returns the `jest` object for chaining.
 
-### `jest.restoreAllMocks()`
+### `~jest.restoreAllMocks()~` DEPRECATED
+
+Renamed to `restoreAllSpies()`
 
 Restores all mocks back to their original value. Equivalent to calling [`.mockRestore()`](MockFunctionAPI.md#mockfnmockrestore) on every mocked function. Beware that `jest.restoreAllMocks()` only works when mock was created with `jest.spyOn`; other mocks will require you to manually restore them.
+
+### `jest.restoreAllSpies()`
+
+Restores all mocks created with `jest.spyOn` back to their original value. Equivalent to calling [`.mockRestore()`](MockFunctionAPI.md#mockfnmockrestore) on these mocked functions.
 
 ## Mock timers
 

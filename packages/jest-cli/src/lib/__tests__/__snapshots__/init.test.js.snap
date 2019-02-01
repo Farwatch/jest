@@ -129,6 +129,9 @@ module.exports = {
   // Automatically restore mock state between every test
   // restoreMocks: false,
 
+  // Automatically restore mock state between every test
+  // restoreSpies: false,
+
   // The root directory that Jest should scan for tests and modules within
   // rootDir: null,
 

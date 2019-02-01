@@ -891,7 +891,15 @@ class ModuleMockerClass {
     this._mockState = new WeakMap();
   }
 
+  //renamed to restoreAllSpies
   restoreAllMocks() {
+    console.log(`
+      restoreAllMocks is deprecated - please use restoreAllSpies instead
+    `);
+    this.restoreAllSpies();
+  }
+
+  restoreAllSpies() {
     this._spyState.forEach(restore => restore());
     this._spyState = new Set();
   }

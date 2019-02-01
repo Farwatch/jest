@@ -656,6 +656,12 @@ Default: `false`
 
 Automatically restore mock state between every test. Equivalent to calling `jest.restoreAllMocks()` between each test. This will lead to any mocks having their fake implementations removed and restores their initial implementation.
 
+### `restoreSpies` [boolean]
+
+Default: `false`
+
+Automatically restore mock state between every test. Equivalent to calling `jest.restoreAllSpies()` between each test. This will lead to any mocks having their fake implementations removed and restores their initial implementation.
+
 ### `rootDir` [string]
 
 Default: The root of the directory containing your jest's [config file](#) _or_ the `package.json` _or_ the [`pwd`](http://en.wikipedia.org/wiki/Pwd) if no `package.json` is found

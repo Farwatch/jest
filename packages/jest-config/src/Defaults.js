@@ -57,6 +57,7 @@ export default ({
   resetModules: false,
   resolver: null,
   restoreMocks: false,
+  restoreSpies: false,
   rootDir: null,
   roots: ['<rootDir>'],
   runTestsByPath: false,

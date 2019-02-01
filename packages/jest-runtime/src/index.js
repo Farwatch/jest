@@ -543,8 +543,16 @@ class Runtime {
     this._mockFactories[moduleID] = mockFactory;
   }
 
+  restoreAllSpies() {
+    this._moduleMocker.restoreAllSpies();
+  }
+
+  //Renamed to restoreAllSpies
   restoreAllMocks() {
-    this._moduleMocker.restoreAllMocks();
+    console.log(`
+      restoreAllMocks is deprecated - please use restoreAllSpies instead
+    `);
+    this.restoreAllSpies();
   }
 
   resetAllMocks() {
@@ -934,6 +942,10 @@ class Runtime {
       this.restoreAllMocks();
       return jestObject;
     };
+    const restoreAllSpies = () => {
+      this.restoreAllSpies();
+      return jestObject;
+    };
     const useFakeTimers = () => {
       this._environment.fakeTimers.useFakeTimers();
       return jestObject;
@@ -1005,6 +1017,7 @@ class Runtime {
       resetModuleRegistry: resetModules,
       resetModules,
       restoreAllMocks,
+      restoreAllSpies,
       retryTimes,
       runAllImmediates: () => _getFakeTimers().runAllImmediates(),
       runAllTicks: () => _getFakeTimers().runAllTicks(),

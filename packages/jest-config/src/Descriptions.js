@@ -54,6 +54,7 @@ export default ({
   resetModules: 'Reset the module registry before running each individual test',
   resolver: 'A path to a custom resolver',
   restoreMocks: 'Automatically restore mock state between every test',
+  restoreSpies: 'Automatically restore mock state between every test',
   rootDir:
     'The root directory that Jest should scan for tests and modules within',
   roots:

@@ -88,6 +88,7 @@ export default ({
   resetModules: false,
   resolver: '<rootDir>/resolver.js',
   restoreMocks: false,
+  restoreSpies: false,
   rootDir: '/',
   roots: ['<rootDir>'],
   runTestsByPath: false,

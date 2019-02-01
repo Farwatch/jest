@@ -727,6 +727,7 @@ export default function normalize(
       case 'resetMocks':
       case 'resetModules':
       case 'restoreMocks':
+      case 'restoreSpies':
       case 'rootDir':
       case 'runTestsByPath':
       case 'silent':

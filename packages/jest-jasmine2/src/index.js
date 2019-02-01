@@ -108,8 +108,8 @@ async function jasmine2(
       }
     }
 
-    if (config.restoreMocks) {
-      runtime.restoreAllMocks();
+    if (config.restoreMocks || config.restoreSpies) {
+      runtime.restoreAllSpies();
     }
   });
 
